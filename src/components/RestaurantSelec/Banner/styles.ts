@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
-import background from "../../../assets/images/LaDolce/apresentacao.png";
+type Capa = {
+  background: string;
+};
+
 import { colors } from "../../../styles";
 
 const CommonStyles = css`
@@ -10,12 +13,11 @@ const CommonStyles = css`
   left: 170px;
 `;
 
-export const Container = styled.section`
+export const Background = styled.div<Capa>`
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${background}) center/cover no-repeat;
+    url(${(props) => props.background}) center/cover no-repeat;
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
 
   position: relative;
   width: 100%;

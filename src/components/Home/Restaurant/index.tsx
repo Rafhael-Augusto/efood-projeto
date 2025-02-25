@@ -2,43 +2,43 @@ import * as S from "./styles";
 import Star from "../../../assets/images/Home/estrela.png";
 import { Link } from "react-router-dom";
 
-type Props = {
-  title: string;
-  description: string;
-  image: string;
-  rating: number;
-  infos: string[];
-  path: string;
-};
+import { Restaurant } from "../Restaurants";
 
-const Product = ({ title, description, image, rating, infos, path }: Props) => {
+const Product = ({
+  id,
+  titulo,
+  destacado,
+  tipo,
+  avaliacao,
+  descricao,
+  capa,
+}: Restaurant) => {
   return (
     <>
       <S.Container className="container">
-        <img src={image} alt="Product image" />
+        <img src={capa} alt="Product image" />
         <S.Info>
           <S.TopRight>
-            {infos.map((info, index) => {
-              return <S.Tag key={index}>{info}</S.Tag>;
-            })}
+            {destacado && <S.Tag>Destaque da semana</S.Tag>}
+            <S.Tag>{tipo}</S.Tag>
           </S.TopRight>
 
           <div>
             <S.Middle>
-              <S.Title>{title}</S.Title>
+              <S.Title>{titulo}</S.Title>
               <div>
-                <h4>{rating}</h4>
+                <h4>{avaliacao}</h4>
                 <div>
                   <img src={Star} alt="Star rating" />
                 </div>
               </div>
             </S.Middle>
-            <S.Description>{description}</S.Description>
-            <S.Tag>
-              <Link className="tag" to={path}>
-                Saiba mais
+            <S.Description>{descricao}</S.Description>
+            <div>
+              <Link className="tag" to={`/product/${id}`}>
+                <S.Tag className="globalButton">Saiba mais</S.Tag>
               </Link>
-            </S.Tag>
+            </div>
           </div>
         </S.Info>
       </S.Container>

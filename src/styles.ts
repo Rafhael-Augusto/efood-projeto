@@ -20,4 +20,20 @@ export const GlobalCss = createGlobalStyle`
         width: 100%;
         margin: 0 auto;
     }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+    }
+
+    .globalButton {
+        color: ${colors.lightPink};
+        font-weight: 700;
+        font-size: 14px;
+         padding: 4px 0;
+        background-color: ${colors.white};
+        border: none;
+        width: 100%;
+        cursor: pointer;
+    }
 `;

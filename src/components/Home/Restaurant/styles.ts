@@ -3,9 +3,18 @@ import { colors } from "../../../styles";
 
 export const Container = styled.div`
   max-width: 472px;
-  width: 100%;
   position: relative;
   color: ${colors.lightPink};
+
+  img {
+    display: block;
+    max-width: 472px;
+    max-height: 217px;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const Description = styled.p`
@@ -16,22 +25,24 @@ export const Description = styled.p`
 `;
 
 export const Tag = styled.div`
-  display: inline;
+  display: inline-block;
   background-color: ${colors.lightPink};
   padding: 6px 4px;
   color: ${colors.white};
-  font-size: 12px;
-  font-weight: 700;
-
-  .tag {
-    color: ${colors.white};
-  }
 `;
 
 export const Info = styled.div`
-  padding: 0 8px 8px 8px;
+  padding: 8px;
   border: 1px solid;
   border-top: none;
+
+  > div {
+    > div {
+      ${Tag} {
+        max-width: 82px;
+      }
+    }
+  }
 `;
 
 export const Title = styled.h3`

@@ -1,5 +1,5 @@
 import Product from "../Restaurant";
-import Restaurant from "../../../models/Restaurant";
+import { Restaurant } from "../Restaurants";
 
 import * as S from "./styles";
 
@@ -14,12 +14,14 @@ const ProductList = ({ Restaurants }: Props) => {
         return (
           <Product
             key={Restaurant.id}
-            title={Restaurant.title}
-            description={Restaurant.description}
-            image={Restaurant.image}
-            rating={Restaurant.rating}
-            infos={Restaurant.infos}
-            path={Restaurant.path}
+            id={Restaurant.id}
+            titulo={Restaurant.titulo}
+            destacado={Restaurant.destacado}
+            descricao={Restaurant.descricao}
+            tipo={Restaurant.tipo}
+            avaliacao={Restaurant.avaliacao}
+            capa={Restaurant.capa}
+            cardapio={Restaurant.cardapio}
           />
         );
       })}
