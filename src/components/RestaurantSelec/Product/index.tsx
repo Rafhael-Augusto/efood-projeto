@@ -12,6 +12,13 @@ type Items = {
   porcao: string;
 };
 
+const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(preco);
+};
+
 const Product = ({ foto, preco, nome, descricao, porcao }: Items) => {
   const [visible, setVisible] = useState(false);
 
@@ -49,7 +56,7 @@ const Product = ({ foto, preco, nome, descricao, porcao }: Items) => {
                     <p>Serve: {porcao}</p>
                   </div>
                   <button className="globalButton">
-                    Adicionar ao carrinho - {preco}
+                    Adicionar ao carrinho - {formataPreco(preco)}
                   </button>
                 </div>
               </div>

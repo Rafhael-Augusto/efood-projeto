@@ -10,7 +10,7 @@ const CommonStyles = css`
   color: ${colors.white};
   font-size: 32px;
   position: absolute;
-  left: 170px;
+  top: 213px;
 `;
 
 export const Background = styled.div<Capa>`
@@ -19,11 +19,14 @@ export const Background = styled.div<Capa>`
   background-position: center;
   background-size: cover;
 
-  position: relative;
   width: 100%;
   height: 280px;
 
   margin-bottom: 56px;
+
+  > div {
+    position: relative;
+  }
 `;
 
 export const RestaurantName = styled.h3`

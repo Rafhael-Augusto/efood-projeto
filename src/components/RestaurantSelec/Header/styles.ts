@@ -10,17 +10,22 @@ const ButtonStyle = css`
   font-size: 18px;
   border: none;
   background-color: transparent;
+  position: relative;
 `;
 
 export const Container = styled.div`
-  display: grid;
-  text-align: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-
   background-color: ${colors.lightWhite};
   background-image: url(${background});
-  padding: 40px;
+  padding: 50px;
+  .container {
+    display: flex;
+    align-items: center;
+
+    .Image {
+      margin-left: 341px;
+      margin-right: 193px;
+    }
+  }
 `;
 
 export const ReturnHome = styled(Link)`
@@ -29,4 +34,6 @@ export const ReturnHome = styled(Link)`
 
 export const OpenCart = styled.button`
   ${ButtonStyle}
+  width: 256px;
+  margin-left: 30px;
 `;

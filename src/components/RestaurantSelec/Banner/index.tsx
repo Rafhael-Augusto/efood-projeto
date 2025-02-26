@@ -21,8 +21,10 @@ const Banner = () => {
       {restInfo.map((item, index) => {
         return (
           <S.Background background={item.capa} key={index}>
-            <S.RestaurantType>{item.tipo}</S.RestaurantType>
-            <S.RestaurantName>{item.titulo}</S.RestaurantName>
+            <div className="container">
+              <S.RestaurantType>{item.tipo}</S.RestaurantType>
+              <S.RestaurantName>{item.titulo}</S.RestaurantName>
+            </div>
           </S.Background>
         );
       })}
