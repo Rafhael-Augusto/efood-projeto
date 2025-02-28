@@ -1,33 +1,32 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as S from "./styles";
 
-import { Restaurant } from "../../Home/Restaurants";
+import { useGetPlatesQuery } from "../../../services/api";
+
+import loading from "../../../assets/images/carregando.gif";
 
 const Banner = () => {
   const { id } = useParams();
 
-  const [restInfo, setRestInfo] = useState<Restaurant[]>([]);
+  const { data: restInfo } = useGetPlatesQuery(id!);
 
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setRestInfo([res]));
-  }, [id]);
+  if (!restInfo) {
+    return (
+      <h3 className="loading">
+        <img src={loading} alt="Carregando" />
+      </h3>
+    );
+  }
 
   return (
     <>
-      {restInfo.map((item, index) => {
-        return (
-          <S.Background background={item.capa} key={index}>
-            <div className="container">
-              <S.RestaurantType>{item.tipo}</S.RestaurantType>
-              <S.RestaurantName>{item.titulo}</S.RestaurantName>
-            </div>
-          </S.Background>
-        );
-      })}
+      <S.Background background={restInfo.capa}>
+        <div className="container">
+          <S.RestaurantType>{restInfo.tipo}</S.RestaurantType>
+          <S.RestaurantName>{restInfo.titulo}</S.RestaurantName>
+        </div>
+      </S.Background>
     </>
   );
 };

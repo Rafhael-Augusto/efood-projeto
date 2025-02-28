@@ -36,4 +36,5 @@ export const OpenCart = styled.button`
   ${ButtonStyle}
   width: 256px;
   margin-left: 30px;
+  cursor: pointer;
 `;

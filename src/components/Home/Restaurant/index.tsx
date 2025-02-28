@@ -36,7 +36,14 @@ const Product = ({
             <S.Description>{descricao}</S.Description>
             <div>
               <Link className="tag" to={`/product/${id}`}>
-                <S.Tag className="globalButton">Saiba mais</S.Tag>
+                <S.Tag
+                  className="globalButton"
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                >
+                  Saiba mais
+                </S.Tag>
               </Link>
             </div>
           </div>

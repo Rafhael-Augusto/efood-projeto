@@ -1,37 +1,41 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import * as S from "./styles";
 
 import closeImage from "../../../assets/images/fechar.png";
+import { useDispatch } from "react-redux";
+import { add } from "../../../store/reducers/cart";
+import { formataPreco } from "../../../services/brl";
 
-type Items = {
-  foto: string;
-  preco: number;
-  id: number;
-  nome: string;
-  descricao: string;
-  porcao: string;
-};
+export interface Cardapio {
+  cardapio: {
+    foto: string;
+    preco: number;
+    id: number;
+    newId: string;
+    nome: string;
+    descricao: string;
+    porcao: string;
+  };
+}
 
-const formataPreco = (preco = 0) => {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(preco);
-};
+const Product = ({ cardapio }: Cardapio) => {
+  const dispatch = useDispatch();
 
-const Product = ({ foto, preco, nome, descricao, porcao }: Items) => {
+  const AddItem = (SelectedItem: Cardapio) => {
+    dispatch(add(SelectedItem));
+  };
   const [visible, setVisible] = useState(false);
-
   return (
     <>
       <S.Container>
         <div>
           <div>
-            <img src={foto} alt="" />
+            <img src={cardapio.foto} alt="" />
           </div>
           <div>
-            <S.Title>{nome}</S.Title>
-            <S.Description>{descricao}</S.Description>
+            <S.Title>{cardapio.nome}</S.Title>
+            <S.Description>{cardapio.descricao}</S.Description>
           </div>
         </div>
         <button className="globalButton" onClick={() => setVisible(true)}>
@@ -47,16 +51,27 @@ const Product = ({ foto, preco, nome, descricao, porcao }: Items) => {
                 <img src={closeImage} alt="Fechar modal" />
               </button>
               <div>
-                <img src={foto} alt={nome} />
+                <img src={cardapio.foto} alt={cardapio.nome} />
 
                 <div>
                   <div>
-                    <S.Title_2>{nome}</S.Title_2>
-                    <h4>{descricao}</h4>
-                    <p>Serve: {porcao}</p>
+                    <S.Title_2>{cardapio.nome}</S.Title_2>
+                    <h4>{cardapio.descricao}</h4>
+                    <p>Serve: {cardapio.porcao}</p>
                   </div>
-                  <button className="globalButton">
-                    Adicionar ao carrinho - {formataPreco(preco)}
+                  <button
+                    className="globalButton"
+                    onClick={() => {
+                      const newId = uuidv4();
+                      const NewItem = {
+                        ...cardapio,
+                        newId: newId,
+                      };
+
+                      AddItem({ cardapio: NewItem });
+                    }}
+                  >
+                    Adicionar ao carrinho - {formataPreco(cardapio.preco)}
                   </button>
                 </div>
               </div>

@@ -1,23 +1,15 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import { Restaurant } from "../../Home/Restaurants";
 
 import * as S from "./styles";
 import Product from "../Product";
 
 import carregando from "../../../assets/images/carregando.gif";
+import { useGetPlatesQuery } from "../../../services/api";
 
 const ProductList = () => {
   const { id } = useParams();
 
-  const [infos, setInfos] = useState<Restaurant>();
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setInfos(res));
-  }, [id]);
+  const { data: infos } = useGetPlatesQuery(id!);
 
   if (!infos) {
     return (
@@ -31,17 +23,11 @@ const ProductList = () => {
     <>
       <S.Container className="container">
         {infos.cardapio.map((item) => {
-          return (
-            <Product
-              key={item.id}
-              foto={item.foto}
-              preco={item.preco}
-              id={item.id}
-              nome={item.nome}
-              descricao={item.descricao}
-              porcao={item.porcao}
-            />
-          );
+          const NewItem = {
+            ...item,
+            newId: "",
+          };
+          return <Product key={NewItem.id} cardapio={NewItem} />;
         })}
       </S.Container>
     </>

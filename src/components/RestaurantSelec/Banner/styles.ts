@@ -23,7 +23,6 @@ export const Background = styled.div<Capa>`
   height: 280px;
 
   margin-bottom: 56px;
-
   > div {
     position: relative;
   }
