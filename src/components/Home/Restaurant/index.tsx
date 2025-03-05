@@ -12,7 +12,7 @@ type Cardapio = {
   porcao: string;
 };
 
-declare type Restaurant = {
+export type Restaurant = {
   id: number;
   titulo: string;
   destacado: boolean;

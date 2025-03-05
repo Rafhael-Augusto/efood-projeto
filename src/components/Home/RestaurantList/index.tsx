@@ -1,5 +1,4 @@
-import Product from "../Restaurant";
-import { Restaurant } from "../Restaurants";
+import Product, { Restaurant } from "../Restaurant";
 
 import * as S from "./styles";
 

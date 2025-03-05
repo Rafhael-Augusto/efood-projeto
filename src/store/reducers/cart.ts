@@ -1,5 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Cardapio } from "../../components/RestaurantSelec/Product";
+import Cardapio from "../../components/RestaurantSelec/Product";
+
+interface Cardapio {
+  cardapio: {
+    foto: string;
+    preco: number;
+    id: number;
+    newId: string;
+    nome: string;
+    descricao: string;
+    porcao: string;
+  };
+}
 
 type CartState = {
   items: Cardapio[];
