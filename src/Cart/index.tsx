@@ -14,6 +14,18 @@ import { useState } from "react";
 import { usePurchaseMutation } from "../services/api";
 import { formataPreco } from "../utils";
 
+interface Cardapio {
+  cardapio: {
+    foto: string;
+    preco: number;
+    id: number;
+    newId: string;
+    nome: string;
+    descricao: string;
+    porcao: string;
+  };
+}
+
 const Cart = () => {
   const dispatch = useDispatch();
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
@@ -45,19 +57,19 @@ const Cart = () => {
       houseNumber: Yup.string().required("Campo obrigatório"),
       complement: Yup.string(),
 
-      cardName: Yup.string().when((values, schema) =>
+      cardName: Yup.string().when((_, schema) =>
         cardInfos ? schema.required("Campo obrigatório") : schema
       ),
-      cardNumber: Yup.number().when((values, schema) =>
+      cardNumber: Yup.number().when((_, schema) =>
         cardInfos ? schema.required("Campo obrigatório") : schema
       ),
-      cvv: Yup.number().when((values, schema) =>
+      cvv: Yup.number().when((_, schema) =>
         cardInfos ? schema.required("Campo obrigatório") : schema
       ),
-      expirationMonth: Yup.number().when((values, schema) =>
+      expirationMonth: Yup.number().when((_, schema) =>
         cardInfos ? schema.required("Campo obrigatório") : schema
       ),
-      expirationYear: Yup.number().when((values, schema) =>
+      expirationYear: Yup.number().when((_, schema) =>
         cardInfos ? schema.required("Campo obrigatório") : schema
       ),
     }),
