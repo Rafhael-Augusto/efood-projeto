@@ -35,7 +35,11 @@ const Product = ({
             </S.Middle>
             <S.Description>{descricao}</S.Description>
             <div>
-              <Link className="tag" to={`/product/${id}`}>
+              <Link
+                title="Clique para visitar o restaurante"
+                className="tag"
+                to={`/product/${id}`}
+              >
                 <S.Tag
                   className="globalButton"
                   onClick={() =>

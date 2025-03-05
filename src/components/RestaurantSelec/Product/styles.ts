@@ -91,10 +91,6 @@ export const Container_2 = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-
-      button {
-        margin-bottom: 27px;
-      }
     }
   }
 `;
@@ -113,4 +109,18 @@ export const CloseModal = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: -1;
+`;
+
+export const addToCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 218px;
+
+  button {
+    transition: all 0.1s ease-in-out;
+    margin-bottom: 24px;
+    &.focus {
+      transform: scale(0.95);
+    }
+  }
 `;
